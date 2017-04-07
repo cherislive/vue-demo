@@ -8,14 +8,14 @@
  */
 let baseUrl
 let routerMode
-const imgBaseUrl = 'https://api.snb.pub'
+const imgBaseUrl = 'http://118.190.25.31'
 console.warn('环境提示: ' + process.env.NODE_ENV)
 
 if (process.env.NODE_ENV === 'development') {
-  baseUrl = 'https://api.snb.pub'
+  baseUrl = 'http://118.190.25.31'
   routerMode = 'hash'
 } else {
-  baseUrl = 'https://mainsite-restapi.ele.me'
+  baseUrl = 'http://118.190.25.31'
   routerMode = 'hash'
 }
 

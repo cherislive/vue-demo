@@ -9,12 +9,14 @@
 // export const displayArticles = ({commit}, type) => {
 //   commit('DISPLAY_ARTICLES', type)
 // }
+import { getUser } from '../../service/getData'
+import {
+  GET_USERINFO
+} from '../mutations/mutation-types.js'
 
 export default {
-  displayArticles: ({commit}, type) => {
-    commit('DISPLAY_ARTICLES', type)
-  },
-  setApp: ({commit}, platform) => {
-    commit('SET_APP', platform)
+  async getUserInfo ({commit}, state) {
+    let res = await getUser()
+    commit(GET_USERINFO, res)
   }
 }

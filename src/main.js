@@ -10,6 +10,12 @@ import {routerMode} from './config/env'
 import vueTap from 'v-tap'
 import FastClick from 'fastclick'
 
+if ('addEventListener' in document) {
+  document.addEventListener('DOMContentLoaded', () => {
+    FastClick.attach(document.body)
+  }, false)
+}
+
 Vue.use(vueTap)
 
 Vue.use(VueRouter)
@@ -45,11 +51,6 @@ method:{
 }
 */
 
-if ('addEventListener' in document) {
-  document.addEventListener('DOMContentLoaded', () => {
-    FastClick.attach(document.body)
-  }, false)
-}
 /*
 beforeCreate:  创建前状态
 created:  创建完毕状态

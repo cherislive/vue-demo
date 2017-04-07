@@ -11,7 +11,7 @@
         <h1 class="header-title">{{headTitle || '发现美好'}}</h1>
 
         <section class="head-right">
-          <router-link :to="userInfo? '/profile':'/login'" v-if='signinUp' class="head-login">
+          <router-link :to="userInfo? '/icenter':'/login'" v-if='signinUp' class="head-login">
             <span class="user_avatar" v-if="userInfo">user</span>
             <span class="login_span iconfont" v-else>&#xe600;</span>
           </router-link>
@@ -52,7 +52,6 @@ export default {
 }
 
 </script>
-
 <style scoped>
 .head-top{width:100%; height:.46rem; display:block;}
 .head-top-content{position:fixed; left:0; top:0; z-index:100; width:100%; height:.46rem; background:rgba(198,31,21,.8); border-bottom:.01rem solid #ddd; color:#fff;}

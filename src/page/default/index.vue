@@ -6,7 +6,11 @@
 
 
 <div class="page home js_show">
-  <div class="page__hd">
+  <div class="page__hd" v-if="userInfo">
+    <h1 class="page__title">{{userInfo.username}}</h1>
+    <p class="page__desc">mobile: {{userInfo.mobile}}<br></p>
+  </div>
+  <div class="page__hd" v-else>
     <h1 class="page__title">WeUI</h1>
     <p class="page__desc">WeUI 是一套同微信原生视觉体验一致的基础样式库，由微信官方设计团队为微信内网页和微信小程序量身设计，令用户的使用感知更加统一。</p>
   </div>
@@ -14,38 +18,38 @@
     <ul>
       <li>
         <div class="weui-flex js_category">
-          <p class="weui-flex__item">FEED</p>
+          <p class="weui-flex__item">快速导航</p>
           <span class="iconfont">&#xe71f;</span>
         </div>
         <div class="page__category js_categoryInner">
           <div class="weui-cells page__category-content">
-            <a class="weui-cell weui-cell_access js_item" data-id="button" href="javascript:;">
+            <a class="weui-cell weui-cell_access js_item" data-id="button" href="#/index">
               <div class="weui-cell__bd">
-                <p>Button</p>
+                <p>首页</p>
               </div>
               <div class="weui-cell__ft"></div>
             </a>
-            <a class="weui-cell weui-cell_access js_item" data-id="input" href="javascript:;">
+            <a class="weui-cell weui-cell_access js_item" data-id="input" href="#/info">
               <div class="weui-cell__bd">
-                <p>Input</p>
+                <p>消息</p>
               </div>
               <div class="weui-cell__ft"></div>
             </a>
-            <a class="weui-cell weui-cell_access js_item" data-id="list" href="javascript:;">
+            <a class="weui-cell weui-cell_access js_item" data-id="list" href="#/create">
               <div class="weui-cell__bd">
-                <p>List</p>
+                <p>创建</p>
               </div>
               <div class="weui-cell__ft"></div>
             </a>
-            <a class="weui-cell weui-cell_access js_item" data-id="slider" href="javascript:;">
+            <a class="weui-cell weui-cell_access js_item" data-id="slider" href="#/topnav">
               <div class="weui-cell__bd">
-                <p>Slider</p>
+                <p>发现</p>
               </div>
               <div class="weui-cell__ft"></div>
             </a>
-            <a class="weui-cell weui-cell_access js_item" data-id="uploader" href="javascript:;">
+            <a class="weui-cell weui-cell_access js_item" data-id="uploader" href="#/icenter">
               <div class="weui-cell__bd">
-                <p>Uploader</p>
+                <p>我的</p>
               </div>
               <div class="weui-cell__ft"></div>
             </a>
@@ -54,27 +58,36 @@
       </li>
       <li>
         <div class="weui-flex js_item" data-id="layers">
-          <p class="weui-flex__item">层级规范</p>
+          <p class="weui-flex__item">城市列表</p>
           <span class="iconfont">&#xe601;</span>
+        </div>
+        <div class="page__category">
+          <span v-for="(hotcityItem, index) in hotcity">
+            {{index + 1}} : {{hotcityItem.name}} | 
+          </span>
         </div>
       </li>
     </ul>
   </div>
 </div>
-
-
 </div>
 </template>
 
 <script>
 import headTop from 'components/common/head'
+import { hotcity } from 'service/getData'
+import {mapState} from 'vuex'
 export default {
-  // data () {
-  //   return {
-  //     message: Date.parse(new Date())
-  //   }
-  // },
+  data () {
+    return {
+      hotcity: []
+    }
+  },
   mounted () {
+    // 获取热门城市
+    hotcity().then(res => {
+      this.hotcity = res
+    })
   },
   components: {
     headTop
@@ -83,6 +96,11 @@ export default {
     reload () {
       window.location.reload()
     }
+  },
+  computed: {
+    ...mapState([
+      'userInfo'
+    ])
   }
 }
 

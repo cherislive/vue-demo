@@ -6,49 +6,37 @@
     </transition>
     <div class="page__ft page-footer">
       <a href="javascript:;">Cheris.sn {{ message }}</a>
-      <p>count: {{ count }}</p>
+      <p>count: {{ count }} {{platform}}</p>
       <p>countPlusLocalState: {{countPlusLocalState}}</p>
       <p>getDoneTodosCount: {{ getDoneTodosCount }}</p>
       <p>getDoneTodos: {{ getDoneTodos[0].author }}</p>
-      <p>{{ hotcity }}</p>
     </div>
-    <share></share>
   </div>
 </template>
 
 <script>
 import 'weui'
-import share from 'components/common/share'
-import { hotcity } from 'service/getData'
 // vuex 提供了独立的构建工具函数 Vuex.mapState
-import { mapState, mapGetters, mapMutations } from 'vuex'  // mapActions
+import { mapState, mapActions, mapGetters, mapMutations } from 'vuex'  // mapActions
+import {localStorage, cookie, browser} from 'config/utils'
 export default {
   name: 'app',
   data () {
     return {
-      hotcity: [],
       localCount: 6,
-      message: Date.parse(new Date()),
-      show: 'home'
+      message: Date.parse(new Date())
     }
   },
   components: {
-    share
+    // share
   },
   mounted () {
-    // 获取热门城市
-    hotcity().then(res => {
-      this.hotcity = res
-    })
-
-    let ua = navigator.userAgent
-    if (ua.indexOf('Android') > -1 || ua.indexOf('Adr') > -1) {
-      this.$store.dispatch('setApp', 'android')
-    } else if (ua.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)) {
-      this.$store.dispatch('setApp', 'ios')
-    } else {
-      this.$store.dispatch('setApp', 'other')
-    }
+    this.getUserInfo() // 获取用户信息
+    console.log(browser) // 测试用 湖区设备信息
+    localStorage('searchHistory', '{test:"localStorage"}') // 测试用localStorage
+    console.log(localStorage('searchHistory'))  // 测试用
+    cookie('a', '1123')  // 测试用 cookie
+    console.log(cookie('a')) // 测试用 cookie
   },
   computed: {
     // 箭头函数可以让代码非常简洁
@@ -56,6 +44,7 @@ export default {
     ...mapState({
       count: state => state.count,
       countAlias: 'count',
+      platform: 'platform',
       countPlusLocalState (state) {
         return state.count + this.localCount
       }
@@ -68,22 +57,10 @@ export default {
       'getDoneTodosCount'
     ])
   },
-  // mapGetters接收的参数表示，页面上定义的变量articleFlag通过getters的getArticleFlag方法来获取
-  // computed: mapState({
-  //   // 箭头函数可使代码更简练
-  //   count: state => state.count,
-  //   doneTodosCount: getters => getters.getDoneTodosCount,
-  //   // 传字符串参数 'count' 等同于 `state => state.count`
-  //   countAlias: 'count',
-  //   // 为了能够使用 `this` 获取局部状态，必须使用常规函数
-  //   countPlusLocalState (state) {
-  //     return state.count + this.localCount
-  //   }
-  // }),
   methods: {
-    // ...mapActions(
-    //   'displayArticles'
-    // ),
+    ...mapActions([
+      'getUserInfo'
+    ]),
     ...mapMutations([
       'ADD_COUNT'
     ]),
@@ -112,9 +89,9 @@ body{ color:#666;background:#f8f8f8;min-width:320px; overflow-x:hidden; -webkit-
   url('//at.alicdn.com/t/font_yk86irwbs1xg8pvi.svg#iconfont') format('svg');
 }
 .iconfont{
-    font-family:"iconfont" !important;
-    font-size:16px;font-style:normal;
-    -webkit-font-smoothing: antialiased;
-    -webkit-text-stroke-width: 0.2px;
-    -moz-osx-font-smoothing: grayscale;}
+font-family:"iconfont" !important;
+font-size:16px;font-style:normal;
+-webkit-font-smoothing: antialiased;
+-webkit-text-stroke-width: 0.2px;
+-moz-osx-font-smoothing: grayscale;}
 </style>

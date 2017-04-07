@@ -33,7 +33,6 @@ export default async(type = 'GET', url = '', data = {}, method = 'fetch') => {
         value: JSON.stringify(data)
       })
     }
-
     try {
       var response = await fetch(url, requestConfig)
       var responseJson = await response.json()
@@ -54,24 +53,38 @@ export default async(type = 'GET', url = '', data = {}, method = 'fetch') => {
     if (type === 'POST') {
       sendData = JSON.stringify(data)
     }
-
     requestObj.open(type, url, true)
     requestObj.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
     requestObj.send(sendData)
-
-    requestObj.onreadystatechange = () => {
-      if (requestObj.readyState === 4) {
-        if (requestObj.status === 200) {
-          let obj = requestObj.response
-          if (typeof obj !== 'object') {
-            obj = JSON.parse(obj)
+    let ajaxStateChangeApi = () => {
+      return new Promise((resolve, reject) => {
+        requestObj.onreadystatechange = () => {
+          if (requestObj.readyState === 4) {
+            // if (requestObj.status === 200) {
+            if (requestObj.status >= 200 && requestObj.status < 300) {
+              let obj = requestObj.response
+              try {
+                obj = (typeof obj !== 'object') ? JSON.parse(obj) : obj
+              } catch (error) {
+                reject(error)
+              }
+              if (obj) {
+                resolve(obj, requestObj.status, requestObj)
+              }
+            } else {
+              // throw new Error(requestObj)
+              reject(requestObj)
+            }
           }
-          return obj
-        } else {
-          throw new Error(requestObj)
         }
-      }
+      })
     }
+    try {
+      var responseAjaxJson = await ajaxStateChangeApi()
+    } catch (error) {
+      throw new Error(error)
+    }
+    return responseAjaxJson
   }
 }
 

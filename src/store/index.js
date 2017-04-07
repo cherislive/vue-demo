@@ -13,8 +13,10 @@ import actions from './actions'
 Vue.use(Vuex)
 
 const state = {
-  strict: process.env.NODE_ENV !== 'production',
-  platform: '',
+  strict: process.env.NODE_ENV !== 'production', // 当前环境
+  userInfo: null, // 用户信息
+  login: true, // 登陆的状态，默认登陆
+
   count: 11,
   show: 'hot',
   loginway: 'login',
@@ -50,8 +52,6 @@ const state = {
 //     })
 //   })
 // }
-
-console.log(getters)
 
 export default new Vuex.Store({
   state,

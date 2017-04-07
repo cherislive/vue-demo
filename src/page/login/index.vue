@@ -3,6 +3,7 @@
 **/
 <template>
 <div class="member-login-box">
+<modal-dialog ref="dialog"></modal-dialog>
 <div class="member-login-title">用户中心</div>
 <div class="weui-cells weui-cells_form">
     <div class="weui-cell weui-cell_warn">
@@ -19,7 +20,7 @@
             <label class="weui-label">手机号</label>
         </div>
         <div class="weui-cell__bd">
-            <input class="weui-input" type="tel" placeholder="请输入手机号">
+            <input class="weui-input" type="tel" placeholder="请输入手机号" v-model="phoneNumber" @input="inputPhone">
         </div>
         <div class="weui-cell__ft">
             <button class="weui-vcode-btn">获取验证码</button>
@@ -37,13 +38,60 @@
 </div>
 <div class="weui-btn-area">
   <div class="button-sp-area">
-      <a href="#/index" class="weui-btn weui-btn_primary">登录</a>   
-      <p >还没有账号，现在<a href="#/regest">注册</a></p>
-  </div>
+      <a href="javascript:;" class="weui-btn weui-btn_primary" @click="tryLogin">登录</a>   
+      <p>还没有账号，现在<a href="#/regest">注册</a></p>
+  </div>  
 </div>
 </div>
 </template>
 <script>
+import modalDialog from '../../components/dialog'
+import {sendLogin} from '../../service/getData'
+import {mapMutations} from 'vuex'
+export default {
+  data () {
+    return {
+      rightPhoneNumber: true, // 输入的手机号码是否符合要求
+      phoneNumber: 13523300801 // 电话号码
+    }
+  },
+  components: {
+    modalDialog
+  },
+  methods: {
+    ...mapMutations([
+      'RECORD_USERINFO' // 登陆成功后保存用户信息
+    ]),
+    // 输入手机号码时判断，输入正确的手机号码后方可点击获取短信验证码
+    inputPhone () {
+      if (/^1\d{10}$/gi.test(this.phoneNumber)) {
+        this.rightPhoneNumber = true
+      } else {
+        this.rightPhoneNumber = false
+      }
+    },
+    async tryLogin () {
+      if (!this.rightPhoneNumber) {
+        this.$refs.dialog.confirm(this.phoneNumber || '手机号不能为空', {
+          type: 'toast',
+          title: '请输入正确的手机号'
+          // okText: 'OK',
+          // cancelText: 'NO',
+          // noBtn: true,
+          // noTitle: true
+        }).then(() => {
+          console.log(this.phoneNumber)
+        }).catch(() => {
+          console.log('选择了取消')
+        })
+        return
+      }
+      this.userInfo = await sendLogin()
+      this.RECORD_USERINFO(this.userInfo)
+      this.$router.go(-1)
+    }
+  }
+}
 </script>
 <style>
 .member-login-box .member-login-title{padding:40px 0 20px; text-align:center; font-size:.22rem;}
