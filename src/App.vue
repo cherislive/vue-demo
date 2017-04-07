@@ -1,17 +1,14 @@
 <template>
-  <div>
     <!-- <transition name="router-fade" mode="out-in"> -->
-    <transition>
-      <router-view></router-view>
-    </transition>
-    <div class="page__ft page-footer">
-      <a href="javascript:;">Cheris.sn {{ message }}</a>
-      <p>count: {{ count }} {{platform}}</p>
-      <p>countPlusLocalState: {{countPlusLocalState}}</p>
-      <p>getDoneTodosCount: {{ getDoneTodosCount }}</p>
-      <p>getDoneTodos: {{ getDoneTodos[0].author }}</p>
+    <div>
+      <transition>
+        <router-view></router-view>
+      </transition>
+      <div class="page__ft page-footer">
+        <a href="javascript:;">Cheris.sn</a>
+        count: {{ count }} {{platform}} | countPlusLocalState: {{countPlusLocalState}} | getDoneTodosCount: {{ getDoneTodosCount }} | getDoneTodos: {{ getDoneTodos[0].author }}
+      </div>
     </div>
-  </div>
 </template>
 
 <script>
@@ -23,8 +20,7 @@ export default {
   name: 'app',
   data () {
     return {
-      localCount: 6,
-      message: Date.parse(new Date())
+      localCount: 6
     }
   },
   components: {
@@ -79,7 +75,7 @@ export default {
 html,body{width:100%; height:100%;}
 body{ color:#666;background:#f8f8f8;min-width:320px; overflow-x:hidden; -webkit-text-size-adjust:none;}
 .page-tit{font-weight:bold; border-bottom:1px solid #ddd;}
-.page-footer{text-align:center;}
+.page-footer{text-align:center; position:fixed; left:0; bottom:.47rem; width:100%; font-size:.12rem;}
 @font-face {
   font-family: 'iconfont';  /* project id 266796 */
   src: url('//at.alicdn.com/t/font_yk86irwbs1xg8pvi.eot');
