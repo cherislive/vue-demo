@@ -38,9 +38,9 @@
 </div>
 <div class="weui-btn-area">
   <div class="button-sp-area">
-      <a href="javascript:;" class="weui-btn weui-btn_primary" @click="tryLogin">登录</a>   
+      <a href="javascript:;" class="weui-btn weui-btn_primary" @click="tryLogin">登录</a>
       <p>还没有账号，现在<a href="#/regest">注册</a></p>
-  </div>  
+  </div>
 </div>
 </div>
 </template>
@@ -51,8 +51,8 @@ import {mapMutations} from 'vuex'
 export default {
   data () {
     return {
-      rightPhoneNumber: true, // 输入的手机号码是否符合要求
-      phoneNumber: 13523300801 // 电话号码
+      rightPhoneNumber: false, // 输入的手机号码是否符合要求
+      phoneNumber: null // 电话号码
     }
   },
   components: {

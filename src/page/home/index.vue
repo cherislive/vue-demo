@@ -3,8 +3,8 @@
 **/
 <template>
 <div>
-<head-top signin-up='home' head-title="首页" go-back='true'>
-  <span slot='logo' class="head_logo" @click="reload">logo</span>
+<head-top signin-up='home' head-title="首页">
+  <a slot='logo' class="head-goback iconfont" href="#/default">&#xe6c5;</a>
 </head-top>
 <v-tab></v-tab>
 <div class="weui-panel">
@@ -37,7 +37,7 @@
     <a href="javascript:void(0);" class="weui-cell weui-cell_access weui-cell_link">
       <div class="weui-cell__bd">查看更多</div>
       <span class="weui-cell__ft"></span>
-    </a>  
+    </a>
   </div>
 </div>
 <div class="weui-loadmore">
@@ -68,6 +68,6 @@ export default {
   }
 }
 </script>
-<style>
-
+<style scoped>
+.head-goback{width:.46rem; height:.46rem; display:block; font-size:.22rem; line-height:.46rem; text-align:center; background:transparent; border:none;}
 </style>

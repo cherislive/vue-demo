@@ -7,7 +7,31 @@
   <span slot='logo' class="head_logo"  @click="reload">logo</span>
 </head-top>
 <v-tab></v-tab>
-topnav page
+<div class="page__bd page__bd_spacing">
+  <div class="weui-flex">
+    <div class="weui-flex__item"><div class="placeholder">发现</div></div>
+  </div>
+  <div class="weui-flex">
+    <div class="weui-flex__item"><div class="placeholder">发现</div></div>
+    <div class="weui-flex__item"><div class="placeholder">发现</div></div>
+  </div>
+  <div class="weui-flex">
+    <div class="weui-flex__item"><div class="placeholder">发现</div></div>
+    <div class="weui-flex__item"><div class="placeholder">发现</div></div>
+    <div class="weui-flex__item"><div class="placeholder">发现</div></div>
+  </div>
+  <div class="weui-flex">
+    <div class="weui-flex__item"><div class="placeholder">发现</div></div>
+    <div class="weui-flex__item"><div class="placeholder">发现</div></div>
+    <div class="weui-flex__item"><div class="placeholder">发现</div></div>
+    <div class="weui-flex__item"><div class="placeholder">发现</div></div>
+  </div>
+  <div class="weui-flex">
+    <div><div class="placeholder">发现</div></div>
+    <div class="weui-flex__item"><div class="placeholder">发现</div></div>
+    <div><div class="placeholder">发现</div></div>
+  </div>
+</div>
 </div>
 </template>
 <script>
@@ -32,5 +56,7 @@ export default {
   }
 }
 </script>
-<style>
+<style scoped>
+.page__bd_spacing{padding:.1rem;}
+.placeholder{margin:5px;padding:0 10px;background-color:#ebebeb;height:2.3em;line-height:2.3em;text-align:center;color:#cfcfcf;}
 </style>

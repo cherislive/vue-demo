@@ -34,7 +34,7 @@ this.$refs.dialog.confirm(this.phoneNumber || '手机号不能为空', {
       <div class="modal-dialog-bd">{{content}}</div>
       <div class="modal-dialog-ft" v-if="!opts.noBtn">
         <slot name="button">
-          <a v-if="opts.type === 'confirm'" href="javascript:void(0)" class="modal-btn" :class="opts.cancelButtonClass" @click="close(1)">{{opts.cancelText}}</a> 
+          <a v-if="opts.type === 'confirm'" href="javascript:void(0)" class="modal-btn" :class="opts.cancelButtonClass" @click="close(1)">{{opts.cancelText}}</a>
           <a href="javascript:void(0)" class="modal-btn modal-btn-primary" :class="opts.okButtonClass" @click="submit">{{opts.okText}}</a>
         </slot>
       </div>
@@ -73,6 +73,7 @@ this.$refs.dialog.confirm(this.phoneNumber || '手机号不能为空', {
         this.show = true
         // toast set
         if (this.opts.type === 'toast') {
+          clearTimeout(this.timer)
           this.timer = setTimeout(() => {
             this.show = false
             clearTimeout(this.timer)
