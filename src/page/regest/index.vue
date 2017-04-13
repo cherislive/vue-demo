@@ -72,8 +72,8 @@
 </div>
 <div class="weui-btn-area">
   <div class="button-sp-area">
-      <a href="#/index" class="weui-btn weui-btn_primary">注册</a>   
-      <p >还没有账号，现在<a href="#/login">登录</a></p>
+      <router-link to="/index" class="weui-btn weui-btn_primary">注册</router-link>
+      <p >还没有账号，现在<router-link to="/login">登录</router-link></p>
   </div>
 </div>
 </div>

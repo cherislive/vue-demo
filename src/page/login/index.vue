@@ -39,7 +39,7 @@
 <div class="weui-btn-area">
   <div class="button-sp-area">
       <a href="javascript:;" class="weui-btn weui-btn_primary" @click="tryLogin">登录</a>
-      <p>还没有账号，现在<a href="#/regest">注册</a></p>
+      <p>还没有账号，现在<router-link to="/regest">注册</router-link></p>
   </div>
 </div>
 </div>

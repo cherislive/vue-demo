@@ -13,10 +13,10 @@ console.warn('环境提示: ' + process.env.NODE_ENV)
 
 if (process.env.NODE_ENV === 'development') {
   baseUrl = 'http://118.190.25.31'
-  routerMode = 'hash'
+  routerMode = 'history'  // hash
 } else {
   baseUrl = 'http://118.190.25.31'
-  routerMode = 'hash'
+  routerMode = 'history' // 'hash'
 }
 
 export {

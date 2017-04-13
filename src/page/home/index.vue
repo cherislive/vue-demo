@@ -4,7 +4,7 @@
 <template>
 <div>
 <head-top signin-up='home' head-title="首页">
-  <a slot='logo' class="head-goback iconfont" href="#/default">&#xe6c5;</a>
+  <router-link to="/default" slot='logo' class="head-goback iconfont">&#xe6c5;</router-link>
 </head-top>
 <v-tab></v-tab>
 <div class="weui-panel">

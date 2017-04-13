@@ -23,36 +23,36 @@
         </div>
         <div class="page__category js_categoryInner">
           <div class="weui-cells page__category-content">
-            <a class="weui-cell weui-cell_access js_item" data-id="button" href="#/index">
+            <router-link to="/index" class="weui-cell weui-cell_access js_item" data-id="button">
               <div class="weui-cell__bd">
                 <p>首页</p>
               </div>
               <div class="weui-cell__ft"></div>
-            </a>
-            <a class="weui-cell weui-cell_access js_item" data-id="input" href="#/info">
+            </router-link>
+            <router-link to="/info" class="weui-cell weui-cell_access js_item" data-id="input">
               <div class="weui-cell__bd">
                 <p>消息</p>
               </div>
               <div class="weui-cell__ft"></div>
-            </a>
-            <a class="weui-cell weui-cell_access js_item" data-id="list" href="#/create">
+            </router-link>
+            <router-link to="/create" class="weui-cell weui-cell_access js_item" data-id="list">
               <div class="weui-cell__bd">
                 <p>创建</p>
               </div>
               <div class="weui-cell__ft"></div>
-            </a>
-            <a class="weui-cell weui-cell_access js_item" data-id="slider" href="#/topnav">
+            </router-link>
+            <router-link to="/topnav" class="weui-cell weui-cell_access js_item" data-id="slider">
               <div class="weui-cell__bd">
                 <p>发现</p>
               </div>
               <div class="weui-cell__ft"></div>
-            </a>
-            <a class="weui-cell weui-cell_access js_item" data-id="uploader" href="#/icenter">
+            </router-link>
+            <router-link to="/icenter" class="weui-cell weui-cell_access js_item" data-id="uploader">
               <div class="weui-cell__bd">
                 <p>我的</p>
               </div>
               <div class="weui-cell__ft"></div>
-            </a>
+            </router-link>
           </div>
         </div>
       </li>
