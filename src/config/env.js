@@ -15,13 +15,8 @@ if (process.env.NODE_ENV === 'development') {
   baseUrl = 'http://118.190.25.31'
   routerMode = 'history'  // hash
 } else {
-<<<<<<< HEAD
   baseUrl = 'http://118.190.25.31'
   routerMode = 'history' // 'hash'
-=======
-  baseUrl = 'https://api.snb.pub'
-  routerMode = 'hash'
->>>>>>> 83a5465a53a22e3e3d05ccd1f0610dc11f8fbca6
 }
 
 export {
